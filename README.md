@@ -1,1 +1,13 @@
-# final
+# udacity-Cap Stone
+
+## Overview
+A location base weather forecast app.
+
+## Instructions
+Just submit your destination and target date. 
+
+## Notification
+Target date should be in 16 days to get forecast.
+
+## Notice
+There's a big confliction bewteen webpack-cli 4.2 and webpack-dev-server, need to keep webpack-cli with version 3.1.12
