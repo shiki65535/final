@@ -5,7 +5,6 @@ body{
     background-color: #f8f8f8;
     color: #fff;
     font-size: 16px;
-
 }
 
 #app{
@@ -25,14 +24,13 @@ body{
 
 }
 
-
-
 #journal {
     text-align: center;
     width: 50%;
     margin: 50px auto 0 auto;
     background-size: cover;
 }
+
 #node {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -58,7 +56,6 @@ body{
     height: auto;
 }
 
-
 #generate {
     width: 10%;
     margin:5px;
@@ -81,8 +78,6 @@ input[type=text] {
     border: none;
     font-size:1.2em;
   }
-
-
 
 button{
     box-sizing: border-box;
@@ -112,16 +107,4 @@ button:focus {
     font-family: 'Oswald', sans-serif;
 
 } 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #999; 
-    font-family: 'Oswald', sans-serif;
-
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #999; 
-    font-family: 'Oswald', sans-serif;
-
-} 
-
+ 

@@ -23,6 +23,7 @@ function checkStorge() {
 }
 
 /* FUNCTIONS */
+//main function
 function performAction(){
   let d = new Date();
   let now = d.getTime();
@@ -34,11 +35,13 @@ function performAction(){
   syncGeo(newJournal, startDate, days);
 };
 
+//clear Storage
 function clearStorage () {
   localStorage.clear();
   remove();
 }
 
+//remove cache
 function remove () {
   let element1 = document.getElementById("journal");
   while (element1.firstChild) {
@@ -51,6 +54,7 @@ function remove () {
   }
 }
 
+/* DATA PROCESS */
 //DATA SYNC
 const getSync = async (baseURLGeo, local, keyGeo)=>{
   const syncRes = await fetch(baseURLGeo+local+keyGeo);
@@ -104,14 +108,14 @@ function syncGeo(newJournal, startDate, days) {
     let destinationLocal = data.geonames[0].name;
     let localPix = data.geonames[0].name + '+' + data.geonames[0].countryName;
     postData('/addGeo', {location: data.geonames[0].name, country: data.geonames[0].countryName, latitude: data.geonames[0].lat, startDate: startDate, days: days })
-    .then(syncPic(localPix), syncWeather(destinationLocal))
+    .then(syncPic(localPix), syncWeather(destinationLocal, days))
   })
 }
 //syncWeather
-function syncWeather(destinationLocal){
+function syncWeather(destinationLocal, days){
   getSync(baseURLW, destinationLocal , apiKeyW)
   .then( function (data) {
-    postData('/addWeather', {temprature: data.data[0].temp, icon: data.data[0].weather.icon})
+    postData('/addWeather', {temprature: data.data[days].temp, icon: data.data[days].weather.icon})
     .then( updateUI())
   })
 }
@@ -131,16 +135,6 @@ const updateUI = async () => {
   try{
     const allData = await request.json();
     remove();
-
-    if (allData.icon == '04d' | '04n' | '09d' | '09n') {
-      situation = 'linear-gradient(90deg, rgba(190, 147, 197, 0.3), rgba(123, 198, 204, 0.3))';
-    }else if(allData.icon == '10d' | '10n' | '11d' | '11n') {
-      situation = 'linear-gradient(90deg, rgba(78, 205, 196, 0.3), rgba(85, 98, 112, 0.3))';
-    }else if(allData.icon == '13d' | '13n' | '50d' | '50n') {
-      situation = 'linear-gradient(90deg, rgba(232, 203, 192, 0.3), rgba(99, 111, 164, 0.3))';
-    }else if(allData.icon == '01d' | '01n') {
-      situation = 'linear-gradient(90deg, rgba(156, 236, 251, 0.3),rgba(101, 199, 247, 0.3), rgba(0, 82, 212, 0.3))';
-    };
 
     let node = document.createElement('div');
     let nodeLocal = allData.location;
