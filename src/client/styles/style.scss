@@ -1,31 +1,49 @@
-$gradient: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d );
+$gradient1: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d );
+$gradient2: linear-gradient(to right,  #be93c5, #7bc6cc );
+
+@media(min-width:768px) {
+    #journal{
+        width: 60%;
+    }
+    #info{
+        width: 60%;
+    }
+}
+@media(max-width:767px) {
+    #journal{
+        width: 90%;
+    }
+    #info{
+        width: 90%;
+    }
+}
 
 body{
     margin:0;
-    background-color: #f8f8f8;
+    background-image: $gradient1; 
     color: #fff;
     font-size: 16px;
 }
-
+#travel {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
 #app{
     text-align: center;
-    background-image: $gradient; 
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     padding-bottom: 50px;
 }
 
-#weather{
+#response {
+    background-color: #f8f8f8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    text-align: center;
-    background-image: $gradient; 
-    height: 500px;
 }
 
 #journal {
     text-align: center;
-    width: 50%;
     margin: 50px auto 0 auto;
     background-size: cover;
 }
@@ -36,17 +54,18 @@ body{
 }
 
 #info {
-    margin: 0 auto;
-    width: 50%;
-
+    margin: 0 auto 50px auto;
     background-color: #fff;
     color: #333 !important;
     font-size:1.5em;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 #panel {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+
 }
 
 .icon{
@@ -68,8 +87,14 @@ body{
     margin: 5px;
 }
 
+#footer{
+    text-align: center;
+    flex-grow : 1;
+    padding-top: 50px;
+}
+
 /*  Basic Styling To Override Default For Basic HTML Elements */
-input[type=text] {
+input{
     box-sizing: border-box;
     width:100%;
     padding: 12px 20px;
@@ -77,6 +102,10 @@ input[type=text] {
     border: none;
     font-size:1.2em;
   }
+input:hover {
+    background-image: $gradient2 !important; 
+    color: white;
+}
 
 button{
     box-sizing: border-box;
@@ -85,25 +114,38 @@ button{
     margin: 8px 0;
     border: none;
     color: #fff;
-    background-image: $gradient; 
+    background-image: $gradient1; 
     font-size:1.2em;
+    transition-duration: 0.4s;
+}
+button:hover {
+    background-image: $gradient2 !important; 
+    color: white;
 }
 
 ul, li {
     margin: 0;
 }
 
-/* Reset style for HTML element on active to have no border*/
 input:focus,
-textarea:focus,
 button:focus {
   outline: none;
-
 }
 
+
 ::placeholder { /* Firefox, Chrome, Opera */ 
+    color: #ccc; 
+    font-family: 'Oswald', sans-serif;
+} 
+ 
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
     color: #999; 
     font-family: 'Oswald', sans-serif;
 
 } 
- 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: #999; 
+    font-family: 'Oswald', sans-serif;
+
+} 

@@ -2,22 +2,28 @@
 <head>
     <title>TRAVEL API</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body id="body">
-    <div id="app">
-        <h1>✈️ Find your destination.</h1>
-        <div>
-            <label for="destination"></label>
-            <input type="text" id="destination" name="destination" placeholder="find your destination" />
-            <label for="startDate"></label>
-            <input type="date" id="startDate" name="startDate">
-            <button id="generate" onclick="return Client.performAction()" onsubmit="return Client.performAction()">Go!!!</button>
+    <div id="travel">
+        <div id="app">
+            <h1>✈️ Find your destination.</h1>
+            <div>
+                <label for="destination"></label>
+                <input type="text" id="destination" name="destination" placeholder="find your destination" />
+                <label for="startDate"></label>
+                <input type="date" id="startDate" name="startDate">
+                <button id="generate" onclick="return Client.performAction()" onsubmit="return Client.performAction()">Go!!!</button>
+            </div>
         </div>
-    </div>
-    <div id="response">
-        <div id="journal">
+        <div id="response">
+            <div id="journal">
+            </div>
+            <div id="info">
+            </div>
         </div>
-        <div id="info">
+        <div id="footer">
+            <h3>udacity frontend development course</h3>
         </div>
     </div>
     <script>
