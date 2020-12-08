@@ -4,6 +4,7 @@
   "description": "## Overview A location base weather forecast app.",
   "main": "webpack.config.js",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -14,10 +15,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.3",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -25,10 +28,10 @@
     "workbox-webpack-plugin": "^6.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node src/server/index.js",
-    "build-prod": "webpack --config webpack.config.js",
-    "build-dev": "webpack-dev-server --config webpack.config.js --open"
+    "build-prod": "webpack --config webpack.prod.js",
+    "build-dev": "webpack-dev-server --config webpack.dev.js --open"
   },
   "author": "",
   "license": "ISC"

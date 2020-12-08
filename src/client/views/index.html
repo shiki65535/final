@@ -10,8 +10,8 @@
             <label for="destination"></label>
             <input type="text" id="destination" name="destination" placeholder="find your destination" />
             <label for="startDate"></label>
-            <input type="text" id="startDate" name="startDate" placeholder="enter your startDate for trip.">
-            <button id="generate" onclick="return Client.performAction()" onsubmit="return Client.performAction()">Go!!</button>
+            <input type="date" id="startDate" name="startDate">
+            <button id="generate" onclick="return Client.performAction()" onsubmit="return Client.performAction()">Go!!!</button>
         </div>
     </div>
     <div id="response">
@@ -21,6 +21,19 @@
         </div>
     </div>
     <script>
+        //Check Date restriction
+        let bookdate = document.getElementById('startDate');
+        let currentdate = new Date();
+            bookdate.min = dateRestricion(currentdate);
+            bookdate.placeholder = bookdate.min;
+        let futuredate = new Date();
+            futuredate.setDate(futuredate.getDate() + 15);
+            bookdate.max = dateRestricion(futuredate);
+        function dateRestricion(timebit) {
+            timebit.setHours(0, -timebit.getTimezoneOffset(), 0, 0);
+            let isodate = timebit.toISOString().slice(0,10);
+            return isodate;
+            }
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant

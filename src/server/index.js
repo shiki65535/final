@@ -1,22 +1,20 @@
 const projectData = {};
 
+//ENVIROMENT
 const express = require('express');
 const app = express();
-
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 const cors = require('cors');
 app.use(cors());
-
 app.use(express.static('dist'));
 
+//PORT LISTENING
 const port = 8080;
 const server = app.listen(port, () => {
     console.log(`you are runining with ${port} port.`)
 });
-
 
 //GET
 app.get('/all', (req, res) => {

@@ -12,11 +12,11 @@ const apiKeyW = '&key=07c720c9f2cc4e278df3d746cb835224';
 const baseURLPix = 'https://pixabay.com/api/?';
 const apiKeyPix = 'key=19218997-1072ddb595caf7151d1ff7109&q=';
 
-/* PRE-SET */
+/* ENVIROMENT SET */
 let situation = 'linear-gradient(90deg, rgba(43, 192, 228,  0.3), rgba(234, 236, 198,  0.3))';
-document.getElementById('generate').addEventListener('click', performAction);
-checkStorge();
-function checkStorge() {
+// document.getElementById('generate').addEventListener('click', performAction);
+check();
+function check() {
   if (localStorage.hasOwnProperty('location')) {
     storgeUI() ;
   } 
@@ -33,12 +33,14 @@ function performAction(){
   let days = Math.floor((targetDateNum - now) / (1000 * 60 * 60 * 24));
 
   syncGeo(newJournal, startDate, days);
+  console.log(':::perform action:::');
 };
 
 //clear Storage
 function clearStorage () {
   localStorage.clear();
   remove();
+  console.log(':::clear storage:::');
 }
 
 //remove cache
@@ -52,7 +54,10 @@ function remove () {
   while (element2.firstChild) {
   element2.removeChild(element2.firstChild);
   }
+  console.log(':::remove cache:::');
 }
+
+
 
 /* DATA PROCESS */
 //DATA SYNC
@@ -110,6 +115,7 @@ function syncGeo(newJournal, startDate, days) {
     postData('/addGeo', {location: data.geonames[0].name, country: data.geonames[0].countryName, latitude: data.geonames[0].lat, startDate: startDate, days: days })
     .then(syncPic(localPix), syncWeather(destinationLocal, days))
   })
+  console.log(':::sync Geo:::');
 }
 //syncWeather
 function syncWeather(destinationLocal, days){
@@ -118,6 +124,7 @@ function syncWeather(destinationLocal, days){
     postData('/addWeather', {temprature: data.data[days].temp, icon: data.data[days].weather.icon})
     .then( updateUI())
   })
+  console.log(':::sync weather:::');
 }
 
 //syncPic
@@ -126,6 +133,7 @@ function syncPic(localPix){
   .then( function (data) {
     postData('/addPix', {pix: data.hits[0].webformatURL})
 })
+console.log(':::sync pixbay:::');
 }
 
 /* UI */
@@ -183,4 +191,9 @@ function storgeUI() {
   panel.setAttribute('id', 'panel');
   document.getElementById('info').appendChild(panel);
   document.getElementById('clearBtn').addEventListener('click', clearStorage);
+
+  console.log(':::storge infomation:::');
 };
+export{
+  performAction, syncGeo, syncWeather, syncPic, updateUI
+}
