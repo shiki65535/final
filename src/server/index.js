@@ -16,10 +16,10 @@ const server = app.listen(port, () => {
     console.log(`you are runining with ${port} port.`)
 });
 
+
 //GET
 app.get('/all', (req, res) => {
     res.send(projectData);
-    res.sendFile("index.html",{ root: __dirname });
     console.log('GET request to the homepage');
 });
 
@@ -48,3 +48,5 @@ app.post('/addPix', (req, res) =>{
   console.log('PPOST request to the homepage')
   res.send({msg:"PPOST RECEIVED"});
 });
+
+module.exports = server;
